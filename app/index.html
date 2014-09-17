@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html data-ng-app="MeuPresidenteApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Nosso novo Presidente</title>
+    <link href="bower_components/angular-material/angular-material.css" type="text/css" rel="stylesheet">
+    <link href="style/main.css" type="text/css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="icone/tab.ico">
+</head>
+
+<body data-ng-controller="MeuPresidenteController" ng-class="{overflow: !isLogged}" document.body.style.overflow='hidden' ;>
+    <header>
+        <h1 layout="horizontal">
+            Nosso novo Presidente
+        </h1>
+        <h2 layout="horizontal">
+            <div flex>
+                Para um Brasil melhor
+            </div>
+        </h2>
+
+    </header>
+    <!-- Primeira linha -->
+    <div layout="vertical" layout-sm="horizontal">
+        <!-- Candidatos -->
+        <div data-ng-repeat="candidato in candidatos.linha1" flex>
+            <div>
+                <!-- Inicio do card do candidato -->
+                <material-card>
+                    <div class="title" layout="horizontal" layout-align="center">
+                        <h2 layout-align="center">{{candidato.name}}</h2>
+                    </div>
+
+                    <img ng-src="{{candidato.img}}" class="material-card-image">
+                    <!-- Botão votar -->
+                    <section layout="vertical" layout-align="center">
+                        <material-button data-ng-click="votar(candidato.name, cpf)" class="material-theme-green">Votar</material-button>
+                    </section>
+                </material-card>
+            </div>
+        </div>
+    </div>
+
+    <!-- Segunda linha -->
+    <div layout="vertical" layout-sm="horizontal">
+        <!-- Candidatos -->
+        <div data-ng-repeat="candidato in candidatos.linha2" flex>
+            <div>
+                <!-- Inicio do card do candidato -->
+                <material-card>
+                    <div class="title" layout="horizontal" layout-align="center">
+                        <h2 layout-align="center">{{candidato.name}}</h2>
+                    </div>
+
+                    <img ng-src="{{candidato.img}}" class="material-card-image">
+                    <!-- Botão votar -->
+                    <section layout="vertical" layout-align="center">
+                        <material-button data-ng-click="votar(candidato.name, cpf)" class="material-theme-green">Votar</material-button>
+                    </section>
+                </material-card>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terceira linha -->
+    <div layout="vertical" layout-sm="horizontal">
+        <!-- Candidatos -->
+        <div data-ng-repeat="candidato in candidatos.linha3" flex>
+            <div>
+                <!-- Inicio do card do candidato -->
+                <material-card>
+                    <div class="title" layout="horizontal" layout-align="center">
+                        <h2 layout-align="center">{{candidato.name}}</h2>
+                    </div>
+
+                    <img ng-src="{{candidato.img}}" class="material-card-image">
+                    <!-- Botão votar -->
+                    <section layout="vertical" layout-align="center">
+                        <material-button data-ng-click="votar(candidato.name, cpf)" class="material-theme-green">Votar</material-button>
+                    </section>
+                </material-card>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quarta linha -->
+    <div layout="vertical" layout-sm="horizontal">
+        <!-- Candidatos -->
+        <div data-ng-repeat="candidato in candidatos.linha4" flex>
+            <div>
+                <!-- Inicio do card do candidato -->
+                <material-card>
+                    <div class="title" layout="horizontal" layout-align="center">
+                        <h2 layout-align="center">{{candidato.name}}</h2>
+                    </div>
+
+                    <img ng-src="{{candidato.img}}" class="material-card-image">
+                    <!-- Botão votar -->
+                    <section layout="vertical" layout-align="center">
+                        <material-button data-ng-click="votar(candidato.name, cpf)" class="material-theme-green">Votar</material-button>
+                    </section>
+                </material-card>
+            </div>
+        </div>
+        <div flex></div>
+    </div>
+
+    <footer data-ng-controller="FooterController">
+        <div layout="vertical" layout-align="center">
+            <div>
+                <h1 layout="horizontal" layout-align="center center" layout-padding="">Votos Atuais</h1>
+            </div>
+            <div>
+                <div layout="horizontal" layout-padding="">
+                    <div flex="50" offset="25">
+                        <highchart id="chart1" config="chartConfig"></highchart>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="bower_components/angularjs/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-material/angular-material.js"></script>
+    <script type="text/javascript" src="bower_components/angular-animate/angular-animate.js"></script>
+    <script type="text/javascript" src="bower_components/highcharts/highcharts-all.js"></script>
+    <script type="text/javascript" src="bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+    <script type="text/javascript" src="bower_components/store.js/store.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    var socket = io();
+    </script>
+
+    <script type="text/javascript" src="js/app.js"></script>
+
+    <script type="text/javascript" src="js/controllers/FooterController.js"></script>
+    <script type="text/javascript" src="js/controllers/MeuPresidenteController.js"></script>
+    <script type="text/javascript" src="js/controllers/LoginController.js"></script>
+
+    <script type="text/javascript" src="js/services/VotacaoService.js"></script>
+    <script type="text/javascript" src="js/services/CandidatosService.js"></script>
+</body>
+
+</html>
